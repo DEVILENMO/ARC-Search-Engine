@@ -1,0 +1,13 @@
+ARCSearchEngineAlgorithmModule/.git
+ARCSearchEngineAlgorithmModule/.idea
+ARCSearchEngineAlgorithmModule/.gitignore
+ARCSearchEngineAlgorithmModule/LICENSE
+
+ARCSearchEngineBackend/.git
+ARCSearchEngineBackend/.idea
+ARCSearchEngineBackend/.gitignore
+ARCSearchEngineBackend/LICENSE
+
+ARCSearchEngineFrontend/.git
+ARCSearchEngineFrontend/.gitignore
+ARCSearchEngineFrontend/LICENSE
