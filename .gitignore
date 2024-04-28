@@ -11,3 +11,5 @@ ARCSearchEngineBackend/LICENSE
 ARCSearchEngineFrontend/.git
 ARCSearchEngineFrontend/.gitignore
 ARCSearchEngineFrontend/LICENSE
+
+config.ini
