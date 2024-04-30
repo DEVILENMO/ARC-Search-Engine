@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="logo.png" alt="ARC Search Engine Logo" width="100"/>
+  <img src="./res/logo.png" alt="ARC Search Engine Logo" width="100"/>
 </div>
 
 # ARC Search Engine / 弧光搜索引擎
 
 ## Installation and Usage
 
-1. Install MongoDB and load the database.
+1. Install MongoDB.
 
 2. Install Redis and update the corresponding directory in the `config.ini` file.
 
@@ -14,11 +14,13 @@
 
 4. Install mpm, then navigate to `ARCSearchEngineFrontend` directory and run `init.bat` to compile frontend application.
 
-4. Once everything is installed, run `start.bat` to start the search engine service. The frontend is accessible by default at `http://localhost:8080/`.
+5. Once everything is installed, run `start.bat` to start the search engine service. The frontend is accessible by default at `http://localhost:8080/`.
+
+6. You can give the search engine the websites you want to set as start website by clicking crawler button in the main page, then input the website list in the type of 'website-url1 max-sub-site-number, website-url2 max number' and press submit button. For example: https://aaa.com 10, https://bbb.com 1000, https://ccc.com, https://ddd.com
 
 ## 安装和使用方法
 
-1. 安装 MongoDB 并载入数据库。
+1. 安装 MongoDB。
 
 2. 安装 Redis 并将对应目录写入 `config.ini` 文件中。
 
@@ -27,3 +29,5 @@
 4. 安装 mpm ,安装完毕后进入 `ARCSearchEngineFrontend` 目录，运行 `init.bat` ，就会自动编译前端。
 
 5. 所有组件安装完成后，运行 `start.bat` 即可开启搜索引擎服务。前端默认访问地址为 `http://localhost:8080/`。
+
+6. 你可以在主页下方找到爬虫按钮，点开后的弹出菜单里输入一些网址，就可以让搜索引擎把这些网址当作起始站点，爬取相关链接进入搜索引擎的数据库。形式应当为：'website-url1 max-sub-site-number, website-url2 max number'，例如： https://aaa.com 10, https://bbb.com 1000, https://ccc.com, https://ddd.com

@@ -13,3 +13,4 @@ ARCSearchEngineFrontend/.gitignore
 ARCSearchEngineFrontend/LICENSE
 
 config.ini
+.idea
