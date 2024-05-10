@@ -31,3 +31,7 @@
 5. 所有组件安装完成后，运行 `start.bat` 即可开启搜索引擎服务。前端默认访问地址为 `http://localhost:8080/`。
 
 6. 你可以在主页下方找到爬虫按钮，点开后的弹出菜单里输入一些网址，就可以让搜索引擎把这些网址当作起始站点，爬取相关链接进入搜索引擎的数据库。形式应当为：'website-url1 max-sub-site-number, website-url2 max number'，例如： https://aaa.com 10, https://bbb.com 1000, https://ccc.com, https://ddd.com
+
+## Developer / 开发者
+
+DEVILENMO
