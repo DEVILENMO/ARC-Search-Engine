@@ -1,0 +1,272 @@
+// 以'//'开头的行应当被跳过 
+// lines start with '//' should be skipped.
+https://github.com/DEVILENMO
+https://github.com/28874hhshh
+https://github.com/MeteorTony
+
+// 中文网站
+// 社交
+https://www.bilibili.com/ 500
+https://space.bilibili.com/37202522 100
+https://www.xiaohongshu.com/explore 500
+https://weibo.com/ 500
+https://m.kookapp.cn/
+https://tim.qq.com/
+https://tieba.baidu.com/index.html 200
+// 公司
+https://www.tencent.com/
+https://www.kingsoft.com/
+https://www.163.com/ 200
+https://www.mi.com/
+https://consumer.huawei.com/
+https://www.iflytek.com/
+// 工具
+https://www.yuque.com/ 500
+https://y.qq.com/ 500
+https://baike.baidu.com/ 500
+https://map.baidu.com/ 200
+https://matpool.com/
+https://gaode.com/ 200
+https://www.baicizhan.com/
+https://www.cnki.net/index/ 500
+https://www.wendaifu.com/ 500
+https://www.hko.gov.hk/tc/index.html 500
+https://www.icourse163.org/ 200
+// 机构
+https://www.gov.cn/
+https://gab.122.gov.cn/
+https://www.gaoxiao.org.cn/ 500
+https://www.shanghai.gov.cn/
+https://www.whu.edu.cn/
+https://www.sjtu.edu.cn/
+https://jtw.sh.gov.cn/
+https://ielts.neea.cn/
+https://fytgs.hkust.edu.hk/
+https://www.siom.ac.cn/
+https://www.ustc.edu.cn/
+https://www.cas.cn/
+https://www.chsi.com.cn/
+https://www.shixi.edu.sh.cn/
+http://www.ppcjzx.edu.sh.cn/
+http://www.shppps.edu.sh.cn/
+https://www.hku.hk/
+https://www.10086.cn
+https://www.hk.chinamobile.com/
+http://www.chinatelecom.com.cn/
+https://www.chinaunicom.com.cn/
+https://www.cnipa.gov.cn/
+https://www.patent.com.cn/
+https://hkust.edu.hk/zh-hans
+https://www.uestc.edu.cn/
+https://www.shu.edu.cn/
+https://www.ecupl.edu.cn/
+http://www.scujcc.edu.cn/
+// 计算机
+https://blog.csdn.net/ 300
+https://www.closeai-asia.com/
+https://www.runoob.com/ 200
+// 生活
+https://world.taobao.com/ 200
+https://hk.jd.com/
+https://www.jd.com/ 200
+https://m.dianping.com/ 200
+https://www.meituan.com/
+https://www.ele.me/
+https://bj.ke.com/
+https://www.pinduoduo.com/
+https://m.lianjia.com/
+https://www.samsclub.cn/
+https://www.freshippo.com/
+// 旅游
+https://hotels.ctrip.com/ 200
+https://www.suanya.com/ 200
+https://www.12306.cn/index/ 200
+// 游戏
+https://www.minebbs.com/
+https://www.xiaoheihe.cn/
+https://www.mihoyo.com/
+https://www.chillyroom.com/
+https://www.taptap.cn/ 200
+https://ys.mihoyo.com/
+https://sr.mihoyo.com/
+// 视频
+https://www.iq.com/
+https://www.bilibili.com/anime/ 500
+https://www.bilibili.com/guochuang/ 500
+https://www.bilibili.com/variety/ 500
+https://www.bilibili.com/v/douga/ 500
+https://www.bilibili.com/v/kichiku/ 500
+https://www.bilibili.com/v/dance/ 500
+https://www.bilibili.com/v/ent/ 500
+https://www.bilibili.com/v/tech/ 500
+https://www.bilibili.com/v/food/ 500
+https://www.bilibili.com/v/car/ 500
+https://www.bilibili.com/v/sports/ 500
+https://www.bilibili.com/v/life/daily/ 500
+https://www.bilibili.com/movie/ 500
+https://www.bilibili.com/tv/ 500
+https://www.bilibili.com/documentary/ 500
+https://www.bilibili.com/v/game/ 500
+https://www.bilibili.com/v/music/ 500
+https://www.bilibili.com/v/cinephile/ 500
+https://www.bilibili.com/v/knowledge/ 500
+https://www.bilibili.com/v/information/ 500
+https://www.bilibili.com/v/life/ 500
+https://www.bilibili.com/v/fashion/ 500
+https://www.bilibili.com/v/animal/ 500
+https://www.bilibili.com/v/life/funny/ 500
+https://love.bilibili.com/ 500
+https://www.bilibili.com/v/game/stand_alone/ 500
+https://www.bilibili.com/mooc/ 500
+https://www.bilibili.com/v/virtual/ 500
+// 音乐
+https://music.163.com/ 500
+https://y.qq.com/ 500
+https://www.kuwo.cn/ 500
+https://www.kugou.com/ 500
+// 金融
+https://bank.jrj.com.cn/
+https://www.boc.cn/
+https://xueqiu.com/ 200
+http://www.hao123.com/bank 200
+// 求职
+https://www.51job.com/ 200
+https://www.zhipin.com/ 200
+https://landing.zhaopin.com/ 200
+// 载具
+https://www.dongchedi.com/ 500
+https://www.yiche.com/ 500
+https://www.nio.cn/ 100
+https://www.nio.com/ 100
+https://aito.auto/ 100
+https://www.xiaopeng.com/ 100
+https://www.lixiang.com/ 100
+https://www.gwm.com.cn/ 100
+https://www.changan.com.cn/ 100
+https://www.avatr.com/ 100
+https://www.niu.com/
+https://e.giant.com.cn/
+https://www.yadea.com.cn/
+https://www.aimatech.com/
+http://www.phoenix-bicycle.com/zh/index.php/product/index/2
+// 新闻
+https://www.chinanews.com.cn/ 500
+https://news.sina.com.cn/ 200
+https://news.cctv.com/china/?hspmw/ 200
+https://top.baidu.com/board?platform=pc&sa=pcindex_a_right 500
+// 明星
+https://baike.baidu.com/item/%E5%86%85%E5%9C%B0%E6%98%8E%E6%98%9F?fromModule=lemma_search-box 200
+https://baike.baidu.com/starmap/view?nodeId=71260de1714a41fc91d31308 200
+// 法律
+https://wenshu.court.gov.cn/ 500
+https://www.kwm.com/hk/zh/home.html 500
+https://www.pkulaw.com/ 500
+https://law.wkinfo.com.cn/ 500
+// 阅读
+https://www.qidian.com/ 500
+https://fanqienovel.com/ 500
+https://www.jjwxc.net/ 500
+https://m.bqgl.cc/ 500
+https://www.zhihu.com/topic/25735792/hot 500
+https://www.amazon.com/Kindle%E4%B8%AD%E6%96%87%E4%B9%A6%E5%BA%97-Kindle-Store/s?rh=n%3A13302294011&page=2 500
+// 常识
+https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD/106554?fr=ge_ala
+
+// Multiple Language
+//Social
+https://twitter.com/ 500
+https://discord.com/ 500
+https://telegram.org/ 500
+https://www.facebook.com/ 500
+https://www.whatsapp.com/ 500
+// Cop and Org
+https://www.microsoft.com/ 500
+https://openai.com/ 500
+https://www.jetbrains.com/ 500
+https://www.adobe.com/ 500
+https://www.amazon.com/ 500
+// Research
+https://www.ieee.org/ 500
+https://cvpr.thecvf.com/ 500
+// Tools
+https://www.office.com/ 500
+https://www.blockbench.net/ 500
+https://learn.microsoft.com/ 500
+https://play.google.com/ 500
+https://www.google.com/maps/ 500
+https://www.pexels.com/ 500
+https://www.wikipedia.org/ 1000
+https://zh.wikipedia.org/ 500
+https://en.wikipedia.org/ 500
+https://es.wikipedia.org/ 500
+https://ru.wikipedia.org/ 500
+https://ja.wikipedia.org/ 500
+https://de.wikipedia.org/ 500
+https://fr.wikipedia.org/ 500
+https://it.wikipedia.org/ 500
+https://fa.wikipedia.org/ 500
+https://pt.wikipedia.org/ 500
+https://translate.google.com/
+https://poe.com/
+// Computer
+https://github.com/ 1000
+https://www.unknowncheats.me/forum/index.php 500
+//Life
+https://www.foodpanda.hk/ 500
+https://www.airbnb.cn/ 500
+// Game
+https://asia.wargaming.net/ 500
+https://www.minecraft.net/ 500
+https://www.xbox.com/ 500
+https://us.shop.battle.net/ 500
+https://www.blizzard.com/ 500
+https://www.cyberpunk.net/ 500
+https://store.steampowered.com/ 1000
+https://store.steampowered.com/search/?filter=topsellers 1000
+https://humanbenchmark.com/ 500
+https://socialclub.rockstargames.com/ 500
+https://www.rockstargames.com/ 500
+https://www.rockstargames.com/gta-v
+https://www.rockstargames.com/zh/reddeadredemption2/
+https://www.seaofthieves.com/
+https://terraria.org/
+https://starbounder.org/
+https://www.nomanssky.com/
+https://www.klei.com/
+https://genshin.hoyoverse.com/
+https://www.pocketpair.jp/
+https://www.ign.com/ 500
+https://store.ubisoft.com/ 500
+https://www.kineticgames.co.uk/
+https://supercell.com/ 500
+https://wiki.bedrock.dev/ 500
+https://mcpedl.com/ 500
+https://www.ea.com/ 500
+https://kovaaks.com/
+https://aimlabs.com/
+https://centerpointgaming.com/
+https://www.metacritic.com/
+https://www.g-portal.com/en 500
+https://genshin.hoyoverse.com/
+https://overwatch.blizzard.com/ 500
+https://starcraft2.blizzard.com/ 500
+// Vedio
+https://www.youtube.com/ 500
+https://www.twitch.tv/ 500
+https://www.netflix.com/ 500
+// Job hire
+https://www.linkedin.com/ 500
+// Vehicle
+https://www.mercedes-benz.com.cn/ 500
+https://www.bmw.com.cn/ 500
+// Book
+https://www.amazon.com/s?k=kindle+books&language=en_US&adgrpid=124492509098&hvadid=585795966945&hvdev=c&hvlocphy=9061627&hvnetw=g&hvqmt=b&hvrand=8259793185633252953&hvtargid=kwd-4404045622&hydadcr=13116_13403151&tag=usgostddeen-20&ref=pd_sl_72jbpasvq6_b 500
+
+// Japanese
+// Org
+https://www.bunka.go.jp/ 100
+// Tools
+https://www.yahoo.co.jp/ 100
+// News
+https://www.asahi.com/ 100
+https://www.nikkei.com/ 100
