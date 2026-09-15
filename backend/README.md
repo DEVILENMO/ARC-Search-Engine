@@ -21,5 +21,5 @@ pip install mongomock httpx
 python test_integration.py
 ```
 
-37 项断言，mongomock 内存数据库，不需要 MongoDB / Redis / LLM Key：
+38 项断言，mongomock 内存数据库，不需要 MongoDB / Redis / LLM Key：
 分词、Apriori 短语挖掘、PageRank、索引流水线、BM25/TF-IDF 排序、REST 路由、WebSocket、会话记忆、LLM 降级路径。

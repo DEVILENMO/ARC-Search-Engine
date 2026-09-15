@@ -33,7 +33,7 @@
 
 - 🚀 **一键启动**：`python main.py` 单进程承载 REST + WebSocket + 爬虫 + LLM 调度
 - 🔔 **实时推送**：WebSocket 广播爬虫进度 / 相关词 / AI 摘要
-- ✅ **37 项集成测试**：无外部依赖即可跑通"建索引 → 检索 → 排序 → API"全链路（`backend/test_integration.py`）
+- ✅ **38 项集成测试**：无外部依赖即可跑通"建索引 → 检索 → 排序 → API"全链路（`backend/test_integration.py`）
 - 🔐 **无硬编码配置**：全部环境变量注入，密钥不入库
 
 ## 🏗️ 架构
@@ -127,7 +127,7 @@ Windows 下一键启动前后端：双击根目录 `start.bat`。
 ```bash
 cd backend
 pip install mongomock httpx pytest httpx
-python test_integration.py     # 37 项断言覆盖 索引→检索→排序→API→WebSocket
+python test_integration.py     # 38 项断言覆盖 索引→检索→排序→API→WebSocket
 ```
 
 ## ⚙️ 配置（环境变量）
@@ -159,7 +159,7 @@ python test_integration.py     # 37 项断言覆盖 索引→检索→排序→A
 │   ├── crawler.py           BFS 爬虫（robots.txt 合规）
 │   ├── storage.py           MongoDB 集合封装 + Redis 可选缓存
 │   ├── textproc.py          文本预处理 + 查询短语提取
-│   └── test_integration.py  37 项集成测试
+│   └── test_integration.py  38 项集成测试
 ├── frontend/                Vue 2 + Element UI 前端
 ├── docs/                    架构 / 算法 / LLM 设计文档
 ├── docker-compose.yml       MongoDB（+ 可选 Redis）
@@ -170,9 +170,9 @@ python test_integration.py     # 37 项断言覆盖 索引→检索→排序→A
 
 本项目源于一门课程作业的团队协作，原始架构中：
 
-- **算法模块（爬虫 / 分词 / LLM）** 与整体设计：[DEVILENMO](https://github.com/DEVILENMO)
-- **Java 后端**（已重写为 Python，特此致谢）：[28874hhshh](https://github.com/28874hhshh)
-- **Vue 前端**：[28874hhshh](https://github.com/28874hhshh)
+- **算法模块（爬虫 / 分词 / LLM）** 与整体设计、本次 Python 重构：[DEVILENMO](https://github.com/DEVILENMO)
+- **Java 后端**（已重写为 Python，特此致谢）：[Wish-You-Hell](https://github.com/Wish-You-Hell)、[MeteorTony](https://github.com/MeteorTony)
+- **Vue 前端**：[Wish-You-Hell](https://github.com/Wish-You-Hell)
 
 ## License
 
