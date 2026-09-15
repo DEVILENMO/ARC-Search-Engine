@@ -31,6 +31,9 @@ from search_engine import SearchEngine
 from storage import Database, make_cache
 from tokenizer import SearchEngineTokenizer
 
+# `config` module itself is referenced in the lifespan error hint below
+import config  # noqa: F401
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
@@ -92,7 +95,12 @@ async def lifespan(_: FastAPI):
 
     cache = make_cache()
     db = Database(cache)
-    db.ensure_collections()
+    try:
+        db.ensure_collections()
+    except Exception as e:
+        raise RuntimeError(
+            f'Cannot reach MongoDB ({config.MONGO_URI}). Start it with `docker compose up -d` '
+            f'or set MONGO_URI. Root cause: {e}') from e
 
     logger.info('Loading GPT-2 tokenizer...')
     tokenizer = SearchEngineTokenizer()

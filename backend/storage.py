@@ -11,8 +11,9 @@ Collections (inherited from the original Java backend):
   doc_stats      文档长度: {url, title_len, content_len}   (BM25 需要)
 
 MongoDB historically forbids '.' inside field names, so URL keys inside
-indexMap are encoded by replacing '.' with '$' (same convention as the
-original Java implementation).
+indexMap are escaped ('.' -> '%2E', '%' -> '%25'). The original Java
+implementation replaced '.' with '$', which silently corrupted any URL that
+legitimately contains a '$'.
 """
 import json
 import logging
@@ -38,11 +39,12 @@ _INDEX_CACHE_KEYS = ['file_num', 'df_map', 'phrase_ids']
 
 
 def encode_url(url: str) -> str:
-    return url.replace('.', '$')
+    # '%' must be escaped first to keep the round-trip injective
+    return url.replace('%', '%25').replace('.', '%2E')
 
 
 def decode_url(url_key: str) -> str:
-    return url_key.replace('$', '.')
+    return url_key.replace('%2E', '.').replace('%25', '%')
 
 
 # ---------------------------------------------------------------------------

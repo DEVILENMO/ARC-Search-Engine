@@ -181,6 +181,8 @@ print('\n== storage unit conversions ==')
 from storage import decode_url, encode_url
 
 check('url encoding roundtrip', decode_url(encode_url('http://a.b.c/x')) == 'http://a.b.c/x')
+check('url with $ survives', decode_url(encode_url('http://a.com/$id?x=1')) == 'http://a.com/$id?x=1',
+      decode_url(encode_url('http://a.com/$id?x=1')))
 
 # ---------------------------------------------------------------------------
 # 3. API routes via TestClient
