@@ -1,9 +1,0 @@
-[submodule "ARCSearchEngineAlgorithmModule"]
-	path = ARCSearchEngineAlgorithmModule
-	url = https://github.com/DEVILENMO/ARCSerachEnginePythonPart.git
-[submodule "ARCSearchEngineBackend"]
-	path = ARCSearchEngineBackend
-	url = https://github.com/28874hhshh/Search_Engine.git
-[submodule "ARCSearchEngineFrontend"]
-	path = ARCSearchEngineFrontend
-	url = https://github.com/28874hhshh/Search_Engine_Web.git

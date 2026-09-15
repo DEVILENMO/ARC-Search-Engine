@@ -1,0 +1,21 @@
+/**修改全局的滚动条*/
+/**滚动条的宽度*/
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #848386;
+    border-radius: 6px;
+}
+  
+.el-table__body-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.el-table__body-wrapper::-webkit-scrollbar-thumb {
+    background-color: #848386;
+    border-radius: 6px;
+}
+  
+  
