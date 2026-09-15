@@ -1,0 +1,12 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pymongo>=4.6
+redis>=5.0
+numpy>=1.26
+transformers>=4.40
+tokenizers>=0.19
+requests>=2.31
+beautifulsoup4>=4.12
+openai>=1.23
+ollama>=0.1.9

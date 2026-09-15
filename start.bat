@@ -1,27 +1,22 @@
 @echo off
+REM ARC Search Engine one-click launcher (Windows)
+REM
+REM Prerequisites:
+REM   1. MongoDB reachable at localhost:27017   -> docker compose up -d
+REM   2. Backend deps installed                 -> pip install -r backend/requirements.txt
+REM   3. Frontend deps installed (Node 14-16)   -> cd frontend ^&^& npm install
+REM
+REM Optional:
+REM   set LLM_API_KEY=sk-xxx                    (enables the remote LLM channel)
 
-REM Loading paths from config.ini...
-for /f "tokens=1,2 delims==" %%a in (config.ini) do (
-    if "%%a"=="ARCSearchEngineAlgorithmModule" set ARCSearchEngineAlgorithmModule=%%b
-    if "%%a"=="ARCSearchEngineBackend" set ARCSearchEngineBackend=%%b
-    if "%%a"=="Redis" set Redis=%%b
-    if "%%a"=="ARCSearchEngineFrontend" set ARCSearchEngineFrontend=%%b
-)
+cd /d "%~dp0"
 
-REM Starting Python algorithm Tornado service...
-echo Starting Python algorithm Tornado service...
-start "Python Algorithm Tornado Service" /d "%ARCSearchEngineAlgorithmModule%" /b "start.bat"
+echo Starting backend (FastAPI, port 8899)...
+start "ARC backend" cmd /c "cd backend && python main.py"
 
-REM Starting backend service...
-echo Starting backend service...
-start "Backend Service" /d "%ARCSearchEngineBackend%" /b "start.bat"
+echo Starting frontend (webpack dev server, port 8080)...
+start "ARC frontend" cmd /c "cd frontend && npm run dev"
 
-REM Starting Redis service...
-echo Starting Redis service...
-start "Redis Service" /d "%Redis%" /b "redis-server.exe"
-
-REM Starting frontend service...
-echo Starting frontend service...
-start "Frontend Service" /d "%ARCSearchEngineFrontend%" /b "start.bat"
-
-echo All services started successfully!
+echo.
+echo Backend  ready when you see: Uvicorn running on http://0.0.0.0:8899
+echo Frontend ready at: http://localhost:8080/

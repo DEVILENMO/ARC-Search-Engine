@@ -66,8 +66,8 @@
                     </div>
                     <!-- AI总结，聊天 -->
                     <div class="ai_function" v-loading="summary_loading">
-                        <chat-bubble v-for="item in chatHistory" 
-                            :key="item"
+                        <chat-bubble v-for="(item, index) in chatHistory"
+                            :key="index"
                             :chatBubble="item">
                         </chat-bubble>
                     </div>
@@ -111,16 +111,6 @@ export default {
         ChatBubble
     },
     data() {
-        var validateUser = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('no content'));
-            } else {
-                if (this.ruleForm.password !== '') {
-                    this.$refs.ruleForm.validateField('password');
-                }
-                callback();
-            }
-        };
         return {
             total: 0,
             keywords: "",
@@ -130,45 +120,36 @@ export default {
             log_url: require("@/assets/logo_complete_version.png"),
             ruleForm: {
                 content: '',
-                client_id: 'app',
-                client_secret: 'app',
-            },
-            rules: {
-                pass: [
-                    {validator: validateUser, trigger: 'blur'}
-                ]
             },
             tableData: [],
-            related:[],
-            wsUrl: 'ws://127.0.0.1:8899/websocket',
+            related: [],
             webSocket: null,
             related_loading: true,
             summary_loading: true,
             page_loading: true,
-            history_res:[],
+            history_res: [],
             AIQuery: '',
             chatHistory: []
         };
     },
-    created() {
-    },
     mounted() {
-        this.tableData = this.$route.query.data
-        this.ruleForm.content = this.$route.query.keywords
+        // 直接访问 /res（无搜索数据）时展示空页面而不是崩溃
+        this.tableData = this.$route.query.data || []
+        this.ruleForm.content = this.$route.query.keywords || ''
         this.total = this.tableData.length
         this.currentPage = 1
         this.page_loading = false
-        this.connect ()
+        this.connect()
 
-        if (localStorage.getItem('history')&&JSON.parse(localStorage.getItem('history'))) {
-			this.history_res = JSON.parse(localStorage.getItem('history'))
-		}
+        if (localStorage.getItem('history') && JSON.parse(localStorage.getItem('history'))) {
+            this.history_res = JSON.parse(localStorage.getItem('history'))
+        }
     },
     methods: {
         del() {
-			localStorage.removeItem('history')
-			this.history_res = []
-		},
+            localStorage.removeItem('history')
+            this.history_res = []
+        },
         /**
          * 翻页事件
          * **/
@@ -177,72 +158,59 @@ export default {
             this.$refs.scrollContainer.scrollTop = 0
         },
         /**
-         * 列表点击事件
-        */
-        handleRowClick(row) {
-            this.related_loading=true
-            this.summary_loading=true
-            this.page_loading=true
-            var _this = this
-            this.$http.post("/search/get", row.words).then(res => {
-                _this.keywords = row.words
-                _this.tableData=res.data.results
-                _this.total = _this.tableData.length
-                _this.currentPage = 1
-                _this.$refs.scrollContainer.scrollTop = 0
-                _this.page_loading = false
-                if (localStorage.getItem('history')&&JSON.parse(localStorage.getItem('history'))) {
-                    this.history_res = JSON.parse(localStorage.getItem('history'))
-                }
-                let val = row.words.trim()
-                if (!val) { //判断输入的值是否为空
-                    return
-                }
-                if (this.history_res.indexOf(val) === -1) {
-                    // 添加到头部
-                    this.history_res.unshift(val)
-                    // 最多显示10个
-                    this.history_res.slice(0, 2)
-                    localStorage.setItem('history', JSON.stringify(this.history_res))
-                }
+         * 记录搜索历史
+         */
+        rememberHistory(words) {
+            if (localStorage.getItem('history') && JSON.parse(localStorage.getItem('history'))) {
+                this.history_res = JSON.parse(localStorage.getItem('history'))
+            }
+            let val = words.trim()
+            if (!val) { //判断输入的值是否为空
+                return
+            }
+            if (this.history_res.indexOf(val) === -1) {
+                // 添加到头部，最多保留10个
+                this.history_res.unshift(val)
+                this.history_res = this.history_res.slice(0, 10)
+                localStorage.setItem('history', JSON.stringify(this.history_res))
+            }
+        },
+        /**
+         * 搜索请求（历史记录点击 & 回车共用）
+         */
+        doSearch(words) {
+            this.related_loading = true
+            this.summary_loading = true
+            this.page_loading = true
+            this.$http.post("/search/get", {keywords: words}).then(res => {
+                this.keywords = words
+                this.tableData = res.data.results || []
+                this.total = this.tableData.length
+                this.currentPage = 1
+                this.$refs.scrollContainer.scrollTop = 0
+                this.page_loading = false
+                this.rememberHistory(words)
             }).catch(e => {
-                _this.$message.error("系统异常")
+                this.page_loading = false
+                this.$message.error("系统异常")
             })
         },
         /**
-         * 回车搜索
-        */
-        sendSearchRequest(words) {
-            this.related_loading=true
-            this.summary_loading=true
-            this.page_loading=true
-            var _this = this
-            this.$http.post("/search/get", words).then(res => {
-                _this.keywords = words
-                _this.tableData=res.data.results
-                _this.total = _this.tableData.length
-                _this.currentPage = 1
-                _this.$refs.scrollContainer.scrollTop = 0
-                _this.page_loading = false
-                if (localStorage.getItem('history')&&JSON.parse(localStorage.getItem('history'))) {
-                    this.history_res = JSON.parse(localStorage.getItem('history'))
-                }
-                let val = words.trim()
-                if (!val) { //判断输入的值是否为空
-                    return
-                }
-                if (this.history_res.indexOf(val) === -1) {
-                    // 添加到头部
-                    this.history_res.unshift(val)
-                    // 最多显示10个
-                    this.history_res.slice(0, 2)
-                    localStorage.setItem('history', JSON.stringify(this.history_res))
-                }
-            }).catch(e => {
-                _this.$message.error("系统异常")
-            })
+         * 列表点击事件
+         */
+        handleRowClick(row) {
+            this.doSearch(row.words)
         },
-        sendAIChatRequest (userQuery) {
+        /**
+         * 回车搜索
+         */
+        sendSearchRequest(words) {
+            this.doSearch(words)
+        },
+        sendAIChatRequest(userQuery) {
+            if (!userQuery || !userQuery.trim()) {
+                return
+            }
             // 更新用户输入的文字到AI聊天界面
             this.chatHistory.push({
                 type: "user",
@@ -267,10 +235,10 @@ export default {
         },
         /**
          * 创建WebSocket链接
-        */
-        connect () {
+         */
+        connect() {
             // 创建WebSocket连接
-            const url = this.wsUrl
+            const url = this.GLOBAL_WS_URL
             this.webSocket = new WebSocket(url)
             // 监听WebSocket事件
             this.webSocket.onopen = () => {
@@ -279,42 +247,42 @@ export default {
 
             this.webSocket.onmessage = (event) => {
                 if (event) {
-                    console.log("websocket msg："+event.data)
+                    console.log("websocket msg：" + event.data)
                     let res = JSON.parse(event.data)
-                    
+
                     if (res.type == 0) {
                         this.related = []
-                        res.msg&&Object.keys(res.msg).forEach(key => {
-                            const value = res[key];
+                        res.msg && Object.keys(res.msg).forEach(key => {
+                            const value = res.msg[key];
                             let words = {
                                 tokenId: value,
                                 words: key
                             }
                             this.related.push(words);
                         });
-                        this.related_loading=false
+                        this.related_loading = false
                     } else if (res.type == 1) {
                         let chatMsg = {
                             type: "ai",
                             content: res.msg.msg
                         }
                         this.chatHistory.push(chatMsg)
-                        this.summary_loading=false
+                        this.summary_loading = false
                     }
                 }
             };
 
             this.webSocket.onclose = () => {
-                console.log('WebSocket连接已关闭')
-                this.connect ()
+                console.log('WebSocket连接已关闭，3s后重连')
+                setTimeout(() => this.connect(), 3000)
             };
         },
         // 随机生成20位的sessionID
-        generateSessionId () {
-            var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+        generateSessionId() {
+            var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
             var res = ""
-            for(var i = 0; i < 20 ; i ++) {
-                var id = Math.ceil(Math.random()*35);
+            for (var i = 0; i < 20; i++) {
+                var id = Math.ceil(Math.random() * 35);
                 res += chars[id];
             }
             return res;

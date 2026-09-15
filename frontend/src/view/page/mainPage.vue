@@ -6,7 +6,7 @@
             <p class="desc">A next-generation AI search engine supporting any UTF-8 compatible language.</p>
 
             <el-form ref="ruleForm" :model="ruleForm" :rules="rules" class="demo-ruleForm" label-width="100px" status-icon @submit.native.prevent>
-                <el-form-item prop="search">
+                <el-form-item prop="content">
                     <el-input v-model="ruleForm.content" autocomplete="false" type="text" style="width:60%" @keyup.enter.native="submitForm('ruleForm')" clearable>
                         <i slot="prefix" class="el-input__icon el-icon-search"></i>
                     </el-input>
@@ -40,72 +40,52 @@ export default {
     name: "Login",
     components: {},
     data() {
-
-        var validateUser = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('no content'));
-            }
-        };
         return {
             drawer: false,
             isVisible: false,
             log_url: require("@/assets/logo.png"),
             ruleForm: {
                 content: '',
-                client_id: 'app',
-                client_secret: 'app',
             },
             start_url: "",
             rules: {
-                pass: [
-                    {validator: validateUser, trigger: 'blur'}
+                content: [
+                    {required: true, message: 'no content', trigger: 'blur'}
                 ]
             },
-            history_res:[],
-            wsUrl: 'ws://127.0.0.1:8899/websocket',
+            history_res: [],
             webSocket: null,
-            progressMap: null,
+            progressMap: new Map(),
         };
     },
-    created() {
-    },
     mounted() {
-        // var _this = this
-        // setInterval(() => {
-        //     _this.isVisible = true
-        //     setTimeout(function() {
-        //         _this.isVisible = false
-        //     }, 200);
-        // }, 5000);
-        this.progressMap = new Map()
-        if (localStorage.getItem('history')&&JSON.parse(localStorage.getItem('history'))) {
-			this.history_res = JSON.parse(localStorage.getItem('history'))
-		}
+        if (localStorage.getItem('history') && JSON.parse(localStorage.getItem('history'))) {
+            this.history_res = JSON.parse(localStorage.getItem('history'))
+        }
         this.connect()
     },
     methods: {
-        parseUrl(){
-            this.$http.post("/PageLink/Parse", this.start_url)
+        parseUrl() {
+            this.$http.post("/PageLink/Parse", {urls: this.start_url})
             this.$message.success("Your crawler request is being processed, please check the backend console for details")
             let url_list = this.start_url.split(",")
             url_list && url_list.forEach(item => {
                 this.progressMap.set(item.split(" ")[0], 0)
             })
-            
+
             this.$forceUpdate()
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     var words = this.ruleForm.content
-                    this.$http.post("/search/get", words).then(res => {
-                        this.$router.push({path: '/res',query: { data:res.data.results,related:res.data.relatedResList,keywords:words }})
+                    this.$http.post("/search/get", {keywords: words}).then(res => {
+                        this.$router.push({path: '/res', query: {data: res.data.results, related: res.data.relatedResList, keywords: words}})
                         let val = words.trim()
                         if (this.history_res.indexOf(val) === -1) {
-                            // 添加到头部
+                            // 添加到头部，最多保留10个
                             this.history_res.unshift(val)
-                            // 最多显示10个
-                            this.history_res.slice(0, 2)
+                            this.history_res = this.history_res.slice(0, 10)
                             localStorage.setItem('history', JSON.stringify(this.history_res))
                         }
                     }).catch(e => {
@@ -118,12 +98,9 @@ export default {
                 }
             });
         },
-        resetForm(formName) {
-            console.log("nothing")
-        },
-        connect () {
+        connect() {
             // 创建WebSocket连接
-            const url = this.wsUrl
+            const url = this.GLOBAL_WS_URL
             this.webSocket = new WebSocket(url)
             // 监听WebSocket事件
             this.webSocket.onopen = () => {
@@ -134,7 +111,7 @@ export default {
                 if (event) {
                     let res = JSON.parse(event.data)
                     if (res.type == 2 && res.msg) {
-                        let progress = (res.msg.finishNum/res.msg.taskNum*100).toFixed(2)
+                        let progress = (res.msg.finishNum / res.msg.taskNum * 100).toFixed(2)
                         if (parseInt(progress) > 100) {
                             progress = 100
                         }
@@ -145,8 +122,8 @@ export default {
             };
 
             this.webSocket.onclose = () => {
-                console.log('WebSocket连接已关闭')
-                this.connect ()
+                console.log('WebSocket连接已关闭，3s后重连')
+                setTimeout(() => this.connect(), 3000)
             };
         }
     }

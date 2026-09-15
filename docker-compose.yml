@@ -1,0 +1,25 @@
+# ARC Search Engine - infrastructure dependencies
+#
+#   docker compose up -d                  # MongoDB only (minimum requirement)
+#   docker compose --profile redis up -d  # MongoDB + Redis (optional cache)
+#
+services:
+  mongodb:
+    image: mongo:7
+    container_name: arc-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: arc-redis
+    ports:
+      - "6379:6379"
+    profiles: ["redis"]
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

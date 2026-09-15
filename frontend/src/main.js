@@ -25,6 +25,8 @@ Vue.prototype.$http = axios
 axios.defaults.baseURL = 'http://localhost:8899'
 axios.defaults.timeout = 100000
 axios.defaults.headers['Content-Type'] = 'application/json';
+// WebSocket 地址从 baseURL 派生，保持单一配置来源
+Vue.prototype.GLOBAL_WS_URL = axios.defaults.baseURL.replace(/^http/, 'ws') + '/websocket'
 // 拦截请求，设置全局token
 axios.interceptors.request.use(function (config) {
   return config

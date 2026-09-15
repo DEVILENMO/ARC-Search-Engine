@@ -1,16 +1,23 @@
-ARCSearchEngineAlgorithmModule/.git
-ARCSearchEngineAlgorithmModule/.idea
-ARCSearchEngineAlgorithmModule/.gitignore
-ARCSearchEngineAlgorithmModule/LICENSE
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
 
-ARCSearchEngineBackend/.git
-ARCSearchEngineBackend/.idea
-ARCSearchEngineBackend/.gitignore
-ARCSearchEngineBackend/LICENSE
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+npm-debug.log*
 
-ARCSearchEngineFrontend/.git
-ARCSearchEngineFrontend/.gitignore
-ARCSearchEngineFrontend/LICENSE
+# Java (historical backend, kept in git history)
+*.class
+*.jar
+target/
 
-config.ini
-.idea
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
